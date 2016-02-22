@@ -11,11 +11,13 @@ function calculadora(){
 	var uno = document.getElementById("uno");
 	var igual = document.getElementById("igual");
 	var mas = document.getElementById("mas");
+	var reset = document.getElementById("reset");
 
 	cero.addEventListener('click', botonSel, false);
     uno.addEventListener('click', botonSel, false);
     igual.addEventListener('click', botonSel, false);
     mas.addEventListener('click', botonSel, false);
+	reset.addEventListener('click', botonSel, false);
 
 	var sumas = 0;
 	
@@ -50,11 +52,20 @@ function calculadora(){
 			    valor_boton="+";
 				pulso_Suma();
 		        break; 
+			case("reset"):
+			    valor_boton="clear";
+				pulso_Clear();
+		        break;
 		  }
 		console.log(valor_boton);
 		boton_html.innerHTML = valor_boton;
 	  
     }
+
+	function pulso_Clear(){
+		var element = document.getElementById("calculadora");
+		element.innerHTML ="";
+	}
 
 	function pulso_Cero(){
 		poner_Num("calculadora","0");
@@ -68,7 +79,9 @@ function calculadora(){
 	function suma(nums) {
 		var total = 0;
 		for (i in nums) {
-			total += parseInt(nums[i], 2);
+			if (nums[i] != ""){
+				total += parseInt(nums[i], 2);
+			}
 		}
 		var result = total.toString(2);
 		changer("calculadora", result); 
@@ -84,11 +97,8 @@ function calculadora(){
 		sumas = 0;
 	}
 
-
 	function pulso_Suma(){
 			poner_Num("calculadora","+");
-
-	
 	}
 
 }
